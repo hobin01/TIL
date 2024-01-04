@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+  <a href="{% url 'home' %}">home</a>
+  {% for board in boards %}
+    <a href="{% url 'board' board.id %}">{{board.title}}</a>
+  {% endfor %}
+  <!-- 원글 -->
+  <h2> 제목 : {{contents.title}}
+  <h4> 글쓴이 : {{contents.writer}} 날짜 : {{contents.date | date:'Y-m-d H:i'}}
+  <p> 내용 <br> {{contents.body}}</p>
+  <br><br>
+  {% if contents.image %}
+    <img src="{{contents.image.url}}">
+  {% endif %}
+  <p> 좋아요 : {{contents.like_count}} 댓글 : {{contents.comment_count}}
+
+  <br><br>
+  {% if user.is_authenticated %}
+
+    <!--좋아요 기능-->
+    <a href="{% url 'contents_like' contents.id %}">
+      {% if contents in user.profile.like_contents.all %}
+        취소
+      {% else %}
+       좋아요
+      {% endif %}
+    </a>
+    
+    <!-- 글 삭제 수정-->
+    {% if user.id == contents.writer.id %}
+    <div class="modify">
+      <a href="{% url 'delete' contents.id %}">삭제</a>
+      <a href="{% url 'update' contents.id %}">수정</a>
+    </div>
+    <br><br>
+    {% endif %}
+
+    <!--댓글 달기-->
+    <form method="POST">
+      {% csrf_token %}
+      댓글 :
+      <input name="body" type="text" value="">
+      <input class="btn btn-primary" type="submit" value="저장">
+    </form>
+    <br><br>
+  {% endif %}
+
+  {% for comment in comments %}
+  <!--댓글 출력(최신순)-->
+  {{comment.body}} - {{comment.writer}} - {{comment.date | date:'Y-m-d H:i'}}
+
+    {% if user.is_authenticated %}
+      <!--댓글 삭제-->
+      {% if user.id == comment.writer.id %}
+        <a href="{% url 'comment_delete' comment.id %}">삭제</a>
+      {% endif %}
+      <!--대댓글 달기-->
+      <form method="POST" action="{% url 'recomment' comment.id %}">
+        {% csrf_token %}
+        대댓글 : 
+        <input name='body' type="text" value="">
+        <input class = "btn btn-primary" type="submit" value="저장">
+      </form>
+    {% endif %}
+
+    {% for recomment in recomments %}
+      <!--대댓글 출력(최신순)-->
+      {% if recomment.comment.id == comment.id %}
+      ------ {{recomment.body}} - {{recomment.writer}} - {{recomment.date | date:'Y-m-d H:i'}}
+        <!--대댓글 삭제-->
+        {% if user.is_authenticated %}
+          {% if user.id == recomment.writer.id %}
+            <a href="{% url 'recomment_delete' recomment.id %}">삭제(대댓)</a>
+          {% endif %}
+        {% endif %}
+        <br>
+      {% endif %}
+    {% endfor %}
+    <br><br>
+  {% endfor %}
+  
+</div>
+{% endblock %}

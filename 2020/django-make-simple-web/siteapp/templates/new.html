@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      <!--주석
+      제목 : 
+      <input name="Title" type="text" value="">
+      <br><br>
+      
+      내용 :
+      <textarea cols=50 rows=30 name="Body"></textarea>
+      <br><br>
+      
+      업로드 :
+      <input name="Image" type="file">
+      <br><br>
+      -->
+
+      <table>
+        {{form.as_table}}
+      </table>
+
+      게시판 : 
+      {% for board in Board %}
+        <input type="radio" name='Board' value="{{board.id}}">
+        {{board.title}}
+      {% endfor %}
+      <br><br>
+
+      <input class="btn btn-primary" type="submit" value="글 저장">
+    </form>
+  </div>
+{% endblock %}

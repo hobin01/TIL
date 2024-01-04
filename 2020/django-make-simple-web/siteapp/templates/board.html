@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <div class="container">
+  <a href="{% url 'home' %}">HOME</a>
+  {% for board in boards %}
+    {% if board.id != now_board %}
+      <a href="{% url 'board' board.id %}">{{board.title}}</a>
+    {% endif %}
+  {% endfor %}
+  <br><br>
+  <!--글(최신순 정렬)-->
+  {% for post in posts %}
+    <a href="{% url 'detail' post.id %}">{{post.title}}</a>
+    - {{post.writer}} - {{post.date | date:'Y-m-d H:i'}} - (좋아요 : {{post.like_count}})
+    - (댓글 : {{post.comment_count}})
+    <br><br>
+  {% endfor %}
+  <!--pagenation-->
+  {% if posts.has_previous %}
+    <a href="?page=1">First</a>
+    <a href="?page={{posts.previous_page_number}}">Previous</a>
+  {% endif %}
+
+  <span>{{posts.number}} / {{posts.paginator.num_pages}}</span>
+
+  {% if posts.has_next %}
+    <a href="?page={{posts.next_page_number}}">Next</a>
+    <a href="?page={{posts.paginator.num_pages}}">Last</a>
+  {% endif %}
+  </div>
+  
+{% endblock %}

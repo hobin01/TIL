@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <a href="{% url 'home' %}">home</a>
+  {% for board in Board %}
+    <a href="{% url 'board' board.id %}">{{board.title}}</a>
+  {% endfor %}
+  <br><br>
+  
+  <form method="GET" action="{% url 'search' %}">
+  <!--pagenation-->
+  <div class="pagination">
+    {% if posts.has_previous %}
+      <a href="?page=1&search={{search}}">First</a>
+      <a href="?page={{posts.previous_page_number}}&search={{search}}">Previous</a>
+    {% endif %}
+
+    <span>{{posts.number}} / {{posts.paginator.num_pages}}</span>
+
+    {% if posts.has_next %}
+      <a href="?page={{posts.next_page_number}}&search={{search}}">Next</a>
+      <a href="?page={{posts.paginator.num_pages}}&search={{search}}">Last</a>
+    {% endif %}
+  </div>
+
+  <!--검색-->
+  <div id="search">
+    <input name="search" type="text">
+    <button class="btn btn-primary" type="submit">검색</button>
+  </div>
+  </form>
+
+  <!--글-->
+  {% for post in posts %}
+    <a href="{% url 'detail' post.id %}">{{post.title}}</a>
+    - {{post.writer}} - {{post.date | date:'Y-m-d H:i'}} - (좋아요 : {{post.like_count}})
+    - (댓글 : {{post.comment_count}})
+    - 게시판 : <a href="{% url 'board' post.board.id %}">{{post.board.title}}</a>
+    <br><br>
+  {% endfor %}
+</div>
+
+{% endblock %}
+

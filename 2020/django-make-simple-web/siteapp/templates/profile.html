@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    id : {{user.username}} <br><br>
+    좋아요 누른 목록
+    {% for like in likes %}
+    <li>
+      <a href="{% url 'detail' like.id %}">{{like}}</a>
+    </li>
+    {% endfor %}
+    <br><br>
+
+    {% if profile.image %}
+      프로필 사진
+      <img src="{{profile.image.url}}">
+      <br><br>
+      프로필 변경
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input name="Image" type="file">
+        <input class="btn btn-primary" type="submit" value="저장">
+      </form>
+    {% else %}
+      프로필 사진 추가
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input name="Image" type="file">
+        <input class="btn btn-primary" type="submit" value="저장">
+      </form>
+    {% endif %}
+    <br><br>
+
+    <a href="{% url 're_password' %}">비밀번호 변경</a>
+
+  </div>
+{% endblock %}

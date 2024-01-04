@@ -1,0 +1,7 @@
+*.o
+*.sh
+makefile
+*.pro.user
+*unittest.pro
+send-arp-test
+
