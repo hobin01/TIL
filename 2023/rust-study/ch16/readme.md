@@ -283,6 +283,116 @@ tx1과 tx를 이용해서 여러 스레드로 하나의 수신자 rx에 대해 �
 
 ---
 
-공유 상태 동시성
+뮤텍스를 사용하여 한 번에 한 스레드에서의 데이터 접근을 허용하기
 
-s
+뮤텍스 : 상호 배제 (mutual exclusion), 한 번에 하나의 스레드만 데이터 접근을 허용
+
+뮤텍스 내부의 데이터에 접근하려면 스레드는 먼저 뮤텍스의 lock을 얻는 요청을 수행해야 함
+
+따라서 뮤텍스는 lock을 통해 가지고 있는 데이터를 보호하는 것으로 묘사됨
+
+뮤텍스 사용을 위한 규칙
+- 데이터를 사용하기 전에는 반드시 락을 얻는 시도를 해야 한다.
+- 뮤텍스가 보호하는 데이터의 사용이 끝났다면 반드시 언락을 해야 다른 스레드들이 락을 얻을 수 있다.
+
+일반적으로 뮤텍스 관리가 어렵기 때문에 메시지 패싱 기법 등 채널을 이용한 다중 스레드 모델을 많이 사용 중
+
+하지만 rust의 소유권 개념으로 인해 락, 언락이 잘못될 수 없도록 구성됨
+
+```rust
+use std::sync::Mutex;
+
+fn main() {
+    let m = Mutex::new(5);
+    {
+        let mut num = m.lock().unwrap();
+        *num = 6;
+    }
+
+    println!("m={:?}", m);
+}
+```
+
+위 예에서 lock() 호출은 락을 가진 다른 스레드가 panic 인 경우 실패함
+
+그러한 경우 lock을 얻을 수 없으므로 unwrap을 통해 그러한 경우 패닉 발생
+
+m의 타입 : Mutex<i32>
+
+num이 m에 대해 lock을 얻음
+
+그리고 num이 가리키는 값인 m의 값을 6으로 바꿈
+
+따라서 최종적으로 m에는 6의 값이 기록됨
+
+Mutex<T> : 스마트 포인터 기능을 수행
+
+lock() 호출 시, MutexGuard 라는 스마트 포이터를 반환하며, unwrap 호출을 통해 처리되는 LockResult 로 감싸짐
+
+또한 MutexGuard에는 Drop 구현체 있으므로, 블록 등 스코프 밖으로 lock 가진 변수가 해제되는 순간 lock도 해제되어, 언락을 까먹는 일이 발생하지 않음.
+
+```rust
+use std::sync::Mutex;
+use std::thread;
+
+fn main() {
+    let counter = Mutex::new(0);
+    let mut handles = vec![];
+
+    for _ in 0..10 {
+        let handle = thread::spawn(move || {
+            let mut num = counter.lock().unwrap();
+
+            *num += 1;
+        });
+        handles.push(handle);
+    }
+
+    for handle in handles {
+        handle.join().unwrap();
+    }
+
+    println!("result : {}", *counter.lock().unwrap());
+}
+```
+
+위 예에서 counter의 lock을 얻는 과정을 스레드를 통해 진행 중
+
+하지만 실행 시, counter의 소유권을 여러 스레드에 옮길 수 없다고 에러 발생됨
+
+이렇게 다중 스레드 환경에서 mutex를 사용하기 위한 것인 `Arc` : Atomically reference Counted
+
+즉 원자적으로 (되면 되는 거고, 안 되면 원래 상태로 복구) 참조자를 카운트한다
+
+```rust
+use std::sync::{Arc, Mutex};
+use std::thread;
+
+fn main() {
+    let counter = Arc::new(Mutex::new(0));
+    let mut handles = vec![];
+
+    for _ in 0..10 {
+        let counter = Arc::clone(&counter);
+        let handle = thread::spawn(move || {
+            let mut num = counter.lock().unwrap();
+
+            *num += 1;
+        });
+        handles.push(handle);
+    }
+
+    for handle in handles {
+        handle.join().unwrap();
+    }
+
+    println!("result : {}", *counter.lock().unwrap());
+}
+```
+
+실행 시 10이 올바르게 출력됨.
+
+Arc 를 이용해 동시성 상황에서, 즉 여러 스레드가 동일한 데이터에 접근할 때 mutex를 올바르게 사용 가능함.
+
+RefCell, Rc 관계와 Mutex, Arc 관계를 생각해보면 좋음
+
