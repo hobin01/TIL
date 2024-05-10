@@ -1,0 +1,13 @@
+기타 참고 자료
+
+특허 GPT 만들기
+https://colab.research.google.com/drive/1o2tqIavhsJmftN8MdQxc7dK3u-76RLaS?usp=sharing%EF%BB%BF
+
+엔티티 추출
+https://colab.research.google.com/drive/1EygVGsCQnMk3vaWnWugg1RCck88LnnIO?usp=sharing%EF%BB%BF
+
+리뷰 감정 분석기
+https://colab.research.google.com/drive/10j0xzekIwgalLUcOVkArLbdmkMAK1X7f?usp=sharing%EF%BB%BF
+
+Langchain + CodeLlama
+https://colab.research.google.com/drive/1YQvt09KJwXEzpqDgpaeiNLvngUND4BX2?usp=sharing%EF%BB%BF
