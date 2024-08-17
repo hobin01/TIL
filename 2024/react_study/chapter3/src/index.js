@@ -1,7 +1,7 @@
 import React, {StrictMode} from "react";
 import {createRoot} from "react-dom/client";
 import "./styles.css";
-import App, {DateApp, TimeApp} from "./App";
+import App, {DateApp, TimeApp, PackingListApp} from "./App";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
@@ -22,4 +22,9 @@ submitBtn.addEventListener("click", () => {
 const currentTime = createRoot(document.getElementById("current-time"));
 currentTime.render(
     <TimeApp />
+);
+
+const packingList = createRoot(document.getElementById("packing-list"));
+packingList.render(
+    <PackingListApp />
 );

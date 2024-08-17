@@ -4,6 +4,7 @@ import Gallery, {Picture} from "./Gallery.js"
 import TodoList from "./TodoList.js"
 import KoreaDateTime, {DateTime} from "./Datetime.js"
 import Clock from "./Clock.js"
+import PackingList from "./PackingList.js";
 
 import "./styles.css";
 
@@ -52,4 +53,8 @@ export function TimeApp() {
             <Clock color={color} time={time.toLocaleTimeString()} />
         </>
     );
+}
+
+export function PackingListApp() {
+    return <PackingList />;
 }
