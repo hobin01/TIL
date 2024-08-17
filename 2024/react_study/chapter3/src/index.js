@@ -1,7 +1,7 @@
 import React, {StrictMode} from "react";
 import {createRoot} from "react-dom/client";
 import "./styles.css";
-import App, {DateApp, TimeApp, PackingListApp} from "./App";
+import App, {DateApp, TimeApp, PackingListApp, RecipeApp} from "./App";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
@@ -27,4 +27,9 @@ currentTime.render(
 const packingList = createRoot(document.getElementById("packing-list"));
 packingList.render(
     <PackingListApp />
+);
+
+const recipe = createRoot(document.getElementById("recipe"));
+recipe.render(
+    <RecipeApp />
 );

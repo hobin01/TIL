@@ -4,7 +4,8 @@ import Gallery, {Picture} from "./Gallery.js"
 import TodoList from "./TodoList.js"
 import KoreaDateTime, {DateTime} from "./Datetime.js"
 import Clock from "./Clock.js"
-import PackingList from "./PackingList.js";
+import PackingList, {PeopleList} from "./PackingList.js";
+import { Recipe } from "./Recipe.js";
 
 import "./styles.css";
 
@@ -56,5 +57,22 @@ export function TimeApp() {
 }
 
 export function PackingListApp() {
-    return <PackingList />;
+    return (
+        <>
+            <PackingList />
+            <PeopleList />
+        </>
+    );
+}
+
+export function RecipeApp() {
+    return (
+        <section>
+            <h1>Recipe</h1>
+            <h2>Two</h2>
+            <Recipe drinkers={2} />
+            <h2>Four</h2>
+            <Recipe drinkers={4} />
+        </section>
+    );
 }

@@ -1,3 +1,5 @@
+import {peopleData, getImageUrl} from "./peopleData.js"
+
 function Item({name, isPacked}) {
     let item = name;
     if(isPacked) {
@@ -30,4 +32,25 @@ export default function PackingList() {
             </ul>
         </section>
     );
+}
+
+export function PeopleList() {
+    const chemists = peopleData.filter(person => (
+        person.profession === "chemist"
+    ));
+    const items = chemists.map(person => (
+        <li key={person.id}>
+            <img 
+                src={getImageUrl(person)}
+                alt={person.name}
+            />
+            <p>
+                <b>{person.name}</b>
+                <br/>
+                {person.profession} - {person.accomplishment}
+            </p>
+        </li>
+    ));
+
+    return <ul>{items}</ul>;
 }
