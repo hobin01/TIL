@@ -3,6 +3,9 @@ import Gallery from "./Gallery";
 import SendForm from "./SendForm.js";
 import AddThree from "./AddThree.js";
 import TextForm from "./TextForm.js";
+import Clock from "./Clock.js";
+import Pointer from "./Pointer.js";
+import ArrayUpdate from "./ArrayUpdate.js";
 
 export default function App() {
   return <div></div>;
@@ -50,5 +53,23 @@ export function TextFormApp() {
       <h2>text form</h2>
       <TextForm />
     </>
+  )
+}
+
+export function ClockApp() {
+  return (
+    <Clock />
+  );
+}
+
+export function PointerApp() {
+  return (
+    <Pointer />
+  );
+}
+
+export function ArrayUpdateApp() {
+  return (
+    <ArrayUpdate />
   )
 }
