@@ -1,11 +1,16 @@
 import Clickme from "./Clickme";
 import StopWatch from "./StopWatch"
+import FocusNode, {CustomFocusNode} from "./DomNode";
+import ScrollSync from "./ScrollSync";
 
 export default function App() {
     return (
         <>
-            <Clickme />
-            <StopWatch />
+            <Clickme /><br />
+            <StopWatch /><br />
+            <FocusNode /><br />
+            <CustomFocusNode /><br />
+            <ScrollSync /><br />
         </>
     );
 }
