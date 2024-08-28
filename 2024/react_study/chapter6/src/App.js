@@ -2,6 +2,10 @@ import Clickme from "./Clickme";
 import StopWatch from "./StopWatch"
 import FocusNode, {CustomFocusNode} from "./DomNode";
 import ScrollSync from "./ScrollSync";
+import VideoPlayer from "./VideoPlayer";
+import ChatRoom from "./chat/ChatRoom";
+import MountTest from "./MountTest";
+import PrimeList from "./PrimeList";
 
 export default function App() {
     return (
@@ -11,6 +15,10 @@ export default function App() {
             <FocusNode /><br />
             <CustomFocusNode /><br />
             <ScrollSync /><br />
+            <VideoPlayer /><br />
+            <ChatRoom /><br />
+            <MountTest /><br />
+            <PrimeList /><br />
         </>
     );
 }
