@@ -22,10 +22,15 @@ algorithm
 - topological sort
 - range max / min value, range sum with index tree
 - kmp
+- scc
+- line segmentation, ccw
+- N진법 사칙연산
+- 카라츠바 빠른 곱셈, 빠른 지수 연산
 
 etc
 
 - handling char*  
-- struct constructor, destructor, functions
+- class / struct constructor, destructor, functions
 - memory allocation with new, delete
 - malloc, calloc, realloc, free
+  
