@@ -1,4 +1,5 @@
 // custom hook
+// hook 이름은 항상 use로 시작해야 함
 
 import { useState, useEffect } from 'react';
 
