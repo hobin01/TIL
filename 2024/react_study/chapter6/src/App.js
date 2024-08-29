@@ -6,6 +6,8 @@ import VideoPlayer from "./VideoPlayer";
 import ChatRoom from "./chat/ChatRoom";
 import MountTest from "./MountTest";
 import PrimeList from "./PrimeList";
+import Network from "./network/Network";
+import FormInput from "./formInput/FormInput"
 
 export default function App() {
     return (
@@ -19,6 +21,8 @@ export default function App() {
             <ChatRoom /><br />
             <MountTest /><br />
             <PrimeList /><br />
+            <Network /><br />
+            <FormInput /><br />
         </>
     );
 }
