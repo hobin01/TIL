@@ -26,6 +26,7 @@ algorithm
 - line segmentation, ccw
 - N진법 사칙연산
 - 카라츠바 빠른 곱셈, 빠른 지수 연산
+- 유클리드 알고리즘, 중국인 나머지 정리
 
 etc
 
