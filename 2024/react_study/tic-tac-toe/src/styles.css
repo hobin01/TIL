@@ -70,6 +70,10 @@
     text-align: center;
     width: 34px;
   }
+
+  .highlight {
+    background: yellow; /* 원하는 색상으로 변경 */
+  }
   
   .board-row:after {
     clear: both;
