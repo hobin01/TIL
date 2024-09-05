@@ -2,10 +2,10 @@ c++ stl 없이 자료구조 + 알고리즘 구현용
 
 data structure
 
-- vector
-- list
-- stack
-- queue
+- vector O
+- list 
+- stack O 
+- queue O
 - priority_queue
 - map, set
 - unordered_map
@@ -30,8 +30,8 @@ algorithm
 
 etc
 
-- handling char*  
-- class / struct constructor, destructor, functions
+- handling char* O
+- class / struct constructor, destructor, functions O
 - memory allocation with new, delete
 - malloc, calloc, realloc, free
   
