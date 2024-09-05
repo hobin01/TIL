@@ -18,7 +18,9 @@ private:
 
 public:
     Stack() : _top(nullptr), _size(0) {}
-    ~Stack() {}
+    ~Stack() {
+        clear();
+    }
 
     void push(T data) {
         Node<T>* newNode = new Node<T>();
