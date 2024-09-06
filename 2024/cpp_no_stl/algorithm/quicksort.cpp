@@ -41,13 +41,13 @@ int main() {
     srand((unsigned int)time(NULL));
     clock_t start, end;
 
-    start = clock();
     int n = 1000;
     int* arr = new int[n];
     for(int i = 0; i < n; i++) {
         arr[i] = rand() % 100;
     }
 
+    start = clock();
     quicksort(arr, 0, n-1);
     end = clock();
 

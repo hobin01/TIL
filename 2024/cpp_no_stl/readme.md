@@ -14,8 +14,8 @@ data structure
 
 algorithm
 
-- binary search
-- quick, merge sort
+- binary search O
+- quick sort O
 - bfs, dfs
 - dijkstra, floyd-warshall
 - permutation, combination
@@ -34,4 +34,3 @@ etc
 - class / struct constructor, destructor, functions O
 - memory allocation with new, delete O
 - malloc, calloc, realloc, free
-  
