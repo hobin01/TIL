@@ -56,7 +56,7 @@ public:
     }
 
     ~String() {
-        delete[] data;
+        clear();
     }
 
     // char*, String에 대한 복사
@@ -74,10 +74,16 @@ public:
     }
 
     // 연산자 오버라이딩 
+    String& operator=(const char* str) {
+        if(data != str) {
+            copy(str);
+        }
+        return *this;
+    }
+
     String& operator=(const String& str) {
         // 자기 대입 방지
         if(this != &str) {
-            delete[] data;
             copy(str.data);
         }
         return *this;
@@ -112,6 +118,10 @@ public:
         return _size;
     }
 
+    const char* getStr() {
+        return data;
+    }
+
     String substr(size_t start, size_t len) {
         if(start >= _size) {
             return String();
@@ -131,8 +141,46 @@ public:
 
         return res;
     }
+
+    void clear() {
+        if(data != nullptr) {
+            delete[] data;
+            data = new char[1];
+            data[0] = '\0';
+        }
+        _size = 0;
+    }
 };
 
 int main() {
-    
+    String s;
+    cout << s.size() << '\n';
+    cout << s.getStr() << '\n';
+
+    s = "123123123123";
+    cout << s.size() << '\n';
+    cout << s.getStr() << '\n';
+
+    String s2 = "qweqweq";
+    cout << s2.size() << '\n';
+    cout << s2.getStr() << '\n';
+
+    s = s2;
+    cout << s.size() << '\n';
+    cout << s.getStr() << '\n';
+
+    String sub = s.substr(2, 3);
+    cout << sub.size() << '\n';
+    cout << sub.getStr() << '\n';
+
+    char c = s2[3];
+    cout << c << '\n';
+
+    s.clear();
+    cout << s.size() << '\n';
+    cout << s.getStr() << '\n';
+
+    s = "zxczxczc";
+    cout << s.size() << '\n';
+    cout << s.getStr() << '\n';
 }
