@@ -32,6 +32,6 @@ etc
 
 - handling char* O
 - class / struct constructor, destructor, functions O
-- memory allocation with new, delete
+- memory allocation with new, delete O
 - malloc, calloc, realloc, free
   
