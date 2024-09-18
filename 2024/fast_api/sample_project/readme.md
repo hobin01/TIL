@@ -12,3 +12,10 @@ src : 모든 웹사이트 코드 포함
 - creature.py : 현재 계층에서 다루는 생명체에 대한 코드
 - explorer.py : 현재 계층에서 다루는 탐험가에 대한 코드 
 
+test : pytest 이용. web, service, data, model과 같은 레벨의 디렉토리
+- unit : 단일 기능 테스트
+  - web : 웹 계층 유닛 테스트
+  - service : 서비스 계층 유닛 테스트
+  - data : 데이터 계층 유닛 테스트
+- full : end-to-end test
+
