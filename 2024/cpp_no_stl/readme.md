@@ -6,7 +6,7 @@ data structure
 - stack O 
 - queue O
 - priority_queue O
-- map, set
+- map, set O
 - unordered_map
 - binary tree
 - trie
@@ -24,15 +24,18 @@ algorithm
 - scc
 - line segmentation, ccw
 - N진법 사칙연산
-- 카라츠바 빠른 곱셈, 빠른 지수 연산
-- 유클리드 알고리즘, 중국인 나머지 정리
+- 카라츠바 빠른 곱셈
+- 빠른 지수 연산
+- 유클리드 알고리즘
+- 중국인 나머지 정리
+- 뤼카 정리
 
 etc
 
 - handling char* O
 - class / struct constructor, destructor, functions O
 - memory allocation with new, delete O
-- malloc, calloc, realloc, free
+- malloc, calloc, realloc, free O
 
 ----
 
