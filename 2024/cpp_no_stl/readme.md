@@ -20,8 +20,9 @@ algorithm
 - permutation, combination
 - range max / min value, range sum with index tree
 - 
-- N진법 사칙연산
-- 카라츠바 빠른 곱셈
+- N진법 사칙연산 O
+- 카라츠바 빠른 곱셈 O
+- 소인수분해
 - 빠른 지수 연산
 - 유클리드 알고리즘
 - 중국인 나머지 정리
