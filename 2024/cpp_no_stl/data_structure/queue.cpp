@@ -144,3 +144,40 @@ int main() {
     cout << "front : " << q.front() << '\n';
     cout << "rear : " << q.rear() << '\n';
 }
+
+/*
+simple version
+
+#define SIZE 1 << 16
+
+int front = 0;
+int rear = -1;
+int size = 0;
+int queue[SIZE] = {0, };
+
+void push(int val) {
+    rear = (rear + 1) % SIZE;
+    queue[rear] = val;
+    size++;
+}
+
+int pop() {
+    if(size == 0)
+        return -1;
+    
+    int res = queue[front];
+    front = (front + 1) % SIZE;
+    size--;
+    return res;
+}
+
+int peek() {
+    if(size == 0)
+        return -1;
+    return queue[front];
+}
+
+bool empty() {
+    return size == 0;
+}
+*/

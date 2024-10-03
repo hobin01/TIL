@@ -116,3 +116,38 @@ int main() {
     cout << "size : " << stk.size() << '\n';
     cout << "top : " << stk.top() << '\n';
 }
+
+/*
+simple version
+
+#define SIZE 1 << 16
+
+int top = -1;
+int stack[SIZE] = {0, };
+
+void push(int val) {
+    stack[++top] = val;
+}
+
+int pop() {
+    if(top < 0) {
+        return -1;
+    }
+
+    return stack[top--];
+}
+
+int peek() {
+    if(top < 0)
+        return -1;
+    return stack[top];
+}
+
+bool empty() {
+    return top < 0;
+}
+
+int size() {
+    return top + 1;
+}
+*/
