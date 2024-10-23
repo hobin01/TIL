@@ -7,6 +7,7 @@ data structure
 - queue O
 - priority_queue O
 - map, set O
+- list O
 - unordered_map
 - binary tree
 - trie
