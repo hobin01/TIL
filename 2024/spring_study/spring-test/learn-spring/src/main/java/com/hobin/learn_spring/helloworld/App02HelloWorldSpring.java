@@ -1,5 +1,8 @@
-package com.hobin.learn_spring;
+package com.hobin.learn_spring.helloworld;
 
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App02HelloWorldSpring {
@@ -25,7 +28,14 @@ public class App02HelloWorldSpring {
 		System.out.println(context.getBean("person2MethodCall"));
 		
 		System.out.println(context.getBean("person3Parameters"));
+		
+		System.out.println(context.getBean("person4Qualifier"));
 
+		
+		System.out.println("==========");
+		
+		// bean definition
+		Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
 	}
 
 }

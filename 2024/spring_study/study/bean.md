@@ -80,3 +80,161 @@ public class Car {
 }
 ```
 
+------
+
+Spring Bean 에 파라미터 넣기 
+
+```java 
+package com.hobin.learn_spring.helloworld;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+record Person(String name, int age, Address addr) {};
+record Address(String line, String city, String country) {};
+
+@Configuration
+public class HelloWorldConfiguration {
+	
+	@Bean
+	public String name() {
+		return "Name!!!";
+	}
+	
+	@Bean
+	public int age() {
+		return 1;
+	}
+	
+	@Bean
+	public Person person() {
+		var person = new Person("person!!!", 123, address());
+		return person;
+	}
+	
+	@Bean
+	public Address address() {
+		return new Address("line!!!", "city!!!", "country!!!");
+	}
+	
+	@Bean
+	public Person person3Parameters(String name, int age, Address addr) {
+		return new Person(name + "123", age, addr);
+	}
+}
+```
+
+person3Parameters Bean에 String, int, Address 에 해당하는 파라미터 사용됨. 
+
+이 때, main에서 직접 파라미터를 넣지 않고 다음과 같이 그냥 호출하여도, 적합한 Bean을 매칭해줌 
+
+```java 
+package com.hobin.learn_spring.helloworld;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class App02HelloWorldSpring {
+
+	public static void main(String[] args) {
+		// 1. launch a spring context
+		var context = 
+				new AnnotationConfigApplicationContext(HelloWorldConfiguration.class);
+		
+		// 2. configure the things that we want Spring to manage
+		// HelloWorldConfiguration - @Configuration
+		// name - @Bean
+		
+		// 3. retrieving Beans managed by Spring
+		System.out.println(context.getBean("name"));
+		
+		System.out.println(context.getBean("age"));
+	
+		System.out.println(context.getBean("person3Parameters"));
+	}
+}
+```
+
+단, 동일한 class 타입인 Bean이 여러 개일 때는 싱글톤 패턴에 위배된다는 에러 발생 
+
+따라서, 파라미터를 받는 것과 같이, 어떤 객체를 가져와야 할 지 모호한 경우를 대비하기 위해 
+
+@Primary annotation과 특정 Bean을 명확히 매칭하기 위해 @Qualifier annotation을 사용함 
+
+또한, Bean에 특정 이름 부여 시, name= 옵션 추가하면 됨.
+
+```java 
+package com.hobin.learn_spring.helloworld;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+
+
+record Person(String name, int age, Address addr) {};
+record Address(String line, String city, String country) {};
+
+@Configuration
+public class HelloWorldConfiguration {
+	
+	@Bean
+	public String name() {
+		return "Name!!!";
+	}
+	
+	@Bean
+	public int age() {
+		return 1;
+	}
+	
+	@Bean
+	public Person person() {
+		var person = new Person("person!!!", 123, address());
+		return person;
+	}
+	
+	@Bean
+	@Primary
+	public Address address() {
+		return new Address("line!!!", "city!!!", "country!!!");
+	}
+	
+	@Bean(name="addr2")
+	@Qualifier("addr3qualifier")
+	public Address address2() {
+		return new Address("line2!!!", "city2!!!", "country2!!!");
+	}
+	
+	@Bean
+	@Primary
+	public Person person2MethodCall() {
+		return new Person(name(), age(), address());
+	}
+	
+	@Bean
+	public Person person3Parameters(String name, int age, Address addr) {
+		return new Person(name + "123", age, addr);
+	}
+	
+	@Bean
+	public Person person4Qualifier(String name, int age, @Qualifier("addr3qualifier") Address addr) {
+		return new Person(name, age, addr);
+	}
+}
+```
+
+위와 같은 상황에서
+
+Address 타입인 것은 address, address2 2개가 있음. 
+
+address에 @Primary annotation을 추가함으로써, 
+
+person3Parameters 객체가 나중에 사용될 때, address, address2 중 address가 자동으로 매핑되게 됨. 
+
+그리고 address2에는 @Qualifier annotation을 추가함으로써, 
+
+person4Qualifier에서 파라미터로 넣는 것과 같이, 우선순위와 상관없이, 특정 Bean을 매칭시킬 수 있음 
+
+그리고 string으로 context.getBean("name") 과 같이 직접 지정하는 것 외에 
+
+context.getBean(Person.class) 로 가져올 수 있으며, 해당 클래스 내에 선언된 함수 등도 사용 가능 
