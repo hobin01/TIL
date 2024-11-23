@@ -1,4 +1,4 @@
-package com.hobin.learn_spring;
+package com.hobin.learn_spring.example;
 
 import java.util.Arrays;
 

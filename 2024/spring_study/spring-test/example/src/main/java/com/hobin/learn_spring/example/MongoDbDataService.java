@@ -1,4 +1,4 @@
-package com.hobin.learn_spring;
+package com.hobin.learn_spring.example;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
