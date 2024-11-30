@@ -6,7 +6,7 @@ https://start.spring.io/
 
 그리고 web 서버 구성을 위해 dependencies에서 필요한 걸 추가하여 다운로드 받는다.
 
-(기본 필요 : spring web)
+(기본 필요 : spring web, devtools)
 
 다운로드한 프로젝트 실행 시, 127.0.0.1:8080에 시간 값이랑 에러 나오는 페이지가 나온다면 정상 동작 중인 것
 
