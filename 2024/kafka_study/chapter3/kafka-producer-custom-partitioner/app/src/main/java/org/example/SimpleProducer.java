@@ -24,14 +24,15 @@ public class SimpleProducer {
         configs.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTAP_SERVERS);
         configs.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        configs.put(ProducerConfig.PARTITIONER_CLASS_CONFIG, CustomPartitioner.class);
 
         // producer 인스턴스 생성 
         KafkaProducer<String, String> producer = new KafkaProducer<>(configs);
 
         // 레코드에 기록될 키 
-        String messageKey = "test_key";
+        String messageKey = "Zero";
         // 레코드에 기록될 메시지
-        String messageValue = "test_message";
+        String messageValue = "0000000";
         // 토픽에 넣을 레코드 정보 (키 없으면 null)
         ProducerRecord<String, String> record = new ProducerRecord<>(TOPIC_NAME, messageKey, messageValue);
         
