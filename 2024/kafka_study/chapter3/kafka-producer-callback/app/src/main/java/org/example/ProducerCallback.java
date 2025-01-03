@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 // Callback interface 상속 받아 
-// callback 처리하여 비동기로 로깅 진행 
+// callback 처리하여 비동기에 대한 로깅 진행 
 
 public class ProducerCallback implements Callback {
     private final static Logger logger = LoggerFactory.getLogger(ProducerCallback.class);

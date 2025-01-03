@@ -36,12 +36,13 @@ public class SimpleProducer {
         ProducerRecord<String, String> record = new ProducerRecord<>(TOPIC_NAME, messageKey, messageValue);
         
         // send 호출 시, 실제 producer가 broker에 전송하는 것이 아닌, 
-        // 전송할 레코드를 배치 처리  
+        // 전송할 레코드를 배치 처리 (배치 조건 만족 시, 비동기로 전송)
+        // 단, default로 대기 시간 0 (linger.ms = 0) 이므로 즉시 전송  
         producer.send(record);
         // 로깅에 레코드 출력
         logger.info("{}", record);
 
-        // flush 호출 시, 버퍼에 있는 레코드 배치를 broker에게 전송
+        // flush 호출 시, 버퍼에 남아 있는 레코드 배치를 broker에게 전송
         producer.flush();
         // producer 인스턴스 종료 
         producer.close();

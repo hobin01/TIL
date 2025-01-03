@@ -38,7 +38,7 @@ public class SimpleProducer {
 
             try {
                 ProducerRecord<String, String> record = new ProducerRecord<String,String>(TOPIC_NAME, key, value);
-                // get() : send() 로 producer 버퍼에 저장된 레코드의 메타데이터 가져옴
+                // send().get() : 브로커에 메시지 전송을 동기식으로 처리 
                 RecordMetadata metadata = producer.send(record).get();
                 logger.info(metadata.toString());
             } catch (Exception e) {
@@ -46,7 +46,7 @@ public class SimpleProducer {
             }
         }
 
-        // 브로커에 전송 
+        // 남은 거 브로커에 전송 
         producer.flush();
 
         long after = System.currentTimeMillis();
@@ -63,14 +63,14 @@ public class SimpleProducer {
             try {
                 ProducerRecord<String, String> record = new ProducerRecord<String,String>(TOPIC_NAME, key, value);
                 // callback 상속받은 ProducerCallback() 을 인자로 사용함으로써 
-                // send() 결과 로깅을 비동기로 처리 
+                // send() 결과 로깅을 비동기로 처리
                 producer.send(record, new ProducerCallback());
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
             }
         }
 
-        // 브로커에 전송 
+        // 남은 거 브로커에 전송 
         producer.flush();
 
         long after2 = System.currentTimeMillis();
