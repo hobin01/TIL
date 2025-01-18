@@ -14,7 +14,7 @@ public class FileSourceConnectorConfig extends AbstractConfig {
     // 읽을 파일 경로 및 이름을 지정
     // 다른 class에서는 file 이라는 값으로 해당 파일을 읽음 
     public static final String DIR_FILE_NAME = "file";
-    private static final String DIR_FILE_NAME_DEFAULT_VALUE = "~/test.txt";
+    private static final String DIR_FILE_NAME_DEFAULT_VALUE = "/Users/hobin/test.txt";
     private static final String DIR_FILE_NAME_DOC = "읽을 파일 경로 및 이름";
 
     // 메시지를 보낼 토픽을 지정 
