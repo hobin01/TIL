@@ -8,7 +8,7 @@ data structure
 - priority_queue O
 - map, set O
 - list O
-- unordered_map
+- unordered_map (hashing)
 - binary tree
 - trie
 
@@ -19,15 +19,26 @@ algorithm
 - bfs, dfs
 - dijkstra, floyd-warshall
 - permutation, combination
-- range max / min value, range sum with index tree
+- range max / min value, range sum with fenwick tree (메모리 관점에서 세그먼트, 인덱스 트리보다 나음)
 - 
 - N진법 사칙연산 O
 - 카라츠바 빠른 곱셈 O
-- 소인수분해
+- 소인수분해 (polard-rho)
 - 빠른 지수 연산
 - 유클리드 알고리즘
 - 중국인 나머지 정리
 - 호프먼 인코딩 
+- 
+- KMP
+- Edmond-Karp
+- SCC
+- 2-SAT
+- Kruskal
+- 선분 교차 알고리즘
+- CCW
+- Convex Hull
+- topology sort 
+- 
 
 etc
 
