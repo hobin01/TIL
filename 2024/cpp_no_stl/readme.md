@@ -8,9 +8,8 @@ data structure
 - priority_queue O
 - map, set O
 - list O
-- unordered_map (hashing)
-- binary tree
-- trie
+- unordered_map (hashing) O
+- trie 
 
 algorithm
 
