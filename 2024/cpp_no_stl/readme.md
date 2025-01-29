@@ -9,13 +9,12 @@ data structure
 - map, set O
 - list O
 - unordered_map (hashing) O
-- trie 
+- trie O
 
 algorithm
 
 - binary search O
 - quick sort O
-- bfs, dfs
 - dijkstra, floyd-warshall
 - permutation, combination
 - range max / min value, range sum with fenwick tree (메모리 관점에서 세그먼트, 인덱스 트리보다 나음)
