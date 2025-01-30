@@ -5,7 +5,15 @@
 
 using namespace std;
 
+void swap(int &a, int &b) {
+    int tmp = a;
+    a = b;
+    b = tmp;
+}
+
 void quicksort(int arr[], int left, int right) {
+    if(left >= right) return;
+
     int l = left;
     int r = right;
     int tmp;
@@ -14,27 +22,21 @@ void quicksort(int arr[], int left, int right) {
 
     while(l <= r) {
         // 역순 : arr[l] > pivot, arr[r] < pivot 으로 변경
-        while(arr[l] < pivot)
-            l++;
-        while(arr[r] > pivot)
-            r--;
+        while(arr[l] < pivot) l++;
+        while(arr[r] > pivot) r--;
         
         if(l < r) {
-            tmp = arr[l];
-            arr[l] = arr[r];
-            arr[r] = tmp;
+            swap(arr[l], arr[r]);
             l++;
             r--;
-        } else if(l == r) {
+        } else if (l == r) {
             l++;
             r--;
         }
     }
 
-    if(left < r)
-        quicksort(arr, left, r);
-    if(l < right)
-        quicksort(arr, l, right);
+    quicksort(arr, left, r);
+    quicksort(arr, l, right);
 }
 
 int main() {
