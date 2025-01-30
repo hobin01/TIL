@@ -15,7 +15,8 @@ algorithm
 
 - binary search O
 - quick sort O
-- dijkstra, floyd-warshall
+- dijkstra, floyd-warshall O
+- MST (kruskal)
 - permutation, combination
 - range max / min value, range sum with fenwick tree (메모리 관점에서 세그먼트, 인덱스 트리보다 나음)
 - 
@@ -31,7 +32,6 @@ algorithm
 - Edmond-Karp
 - SCC
 - 2-SAT
-- Kruskal
 - 선분 교차 알고리즘
 - CCW
 - Convex Hull
