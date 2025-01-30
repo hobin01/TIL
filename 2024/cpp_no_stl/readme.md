@@ -16,8 +16,8 @@ algorithm
 - binary search O
 - quick sort O
 - dijkstra, floyd-warshall O
-- MST (kruskal)
-- permutation, combination
+- MST (kruskal) O
+- permutation, combination O
 - range max / min value, range sum with fenwick tree (메모리 관점에서 세그먼트, 인덱스 트리보다 나음)
 - 
 - N진법 사칙연산 O
@@ -26,7 +26,8 @@ algorithm
 - 빠른 지수 연산
 - 유클리드 알고리즘
 - 중국인 나머지 정리
-- 호프먼 인코딩 
+- 행렬 곱셈
+- 피보나치 수열 합 
 - 
 - KMP
 - Edmond-Karp
@@ -36,6 +37,7 @@ algorithm
 - CCW
 - Convex Hull
 - topology sort 
+- 호프먼 인코딩 
 - 
 
 etc
