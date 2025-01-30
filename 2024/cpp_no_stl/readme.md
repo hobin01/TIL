@@ -13,33 +13,35 @@ data structure
 
 algorithm
 
-- binary search O
-- quick sort O
-- dijkstra, floyd-warshall O
-- MST (kruskal) O
-- permutation, combination O
-- range sum with fenwick tree (메모리 관점에서 더 좋음)
-- range max / min value, sum with index tree
-- 
-- N진법 사칙연산 O
-- 카라츠바 빠른 곱셈 O
-- 소인수분해 (polard-rho)
-- 빠른 지수 연산
-- 유클리드 알고리즘
-- 중국인 나머지 정리
-- 행렬 곱셈
-- 피보나치 수열 합 
-- 
-- KMP
-- Edmond-Karp
-- SCC
-- 2-SAT
-- 선분 교차 알고리즘
-- CCW
-- Convex Hull
-- topology sort 
-- 호프먼 인코딩 
-- 
+- basic
+  - binary search O
+  - quick sort O
+  - dijkstra, floyd-warshall O
+  - MST (kruskal) O
+  - permutation, combination O
+  - range sum with fenwick tree (메모리 관점에서 더 좋음) O
+  - range max / min value, sum with index tree O
+
+- math
+  - N진법 사칙연산 (덧셈, 뺄셈, 곱셈)
+  - 카라츠바 빠른 곱셈
+  - 소인수분해 (polard-rho)
+  - 빠른 지수 연산
+  - 유클리드 알고리즘
+  - 중국인 나머지 정리
+  - 행렬 곱셈
+  - 피보나치 수열 합 
+
+- hard
+  - KMP
+  - Edmond-Karp
+  - SCC
+  - 2-SAT
+  - 선분 교차 알고리즘
+  - CCW
+  - Convex Hull
+  - topology sort 
+  - 호프먼 인코딩 
 
 etc
 
