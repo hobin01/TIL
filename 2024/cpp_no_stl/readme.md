@@ -18,7 +18,8 @@ algorithm
 - dijkstra, floyd-warshall O
 - MST (kruskal) O
 - permutation, combination O
-- range max / min value, range sum with fenwick tree (메모리 관점에서 세그먼트, 인덱스 트리보다 나음)
+- range sum with fenwick tree (메모리 관점에서 더 좋음)
+- range max / min value, sum with index tree
 - 
 - N진법 사칙연산 O
 - 카라츠바 빠른 곱셈 O
