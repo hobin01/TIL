@@ -23,18 +23,16 @@ algorithm
   - range max / min value, sum with index tree O
 
 - math
-  - N진법 사칙연산 (덧셈, 뺄셈, 곱셈)
-  - 카라츠바 빠른 곱셈
-  - 소인수분해 (polard-rho)
+  - N진법 사칙연산 (덧셈, 뺄셈, 곱셈 (카라츠바 빠른 곱셈)) O
   - 빠른 지수 연산
-  - 유클리드 알고리즘
+  - 유클리드 알고리즘 (gcd)
   - 중국인 나머지 정리
   - 행렬 곱셈
   - 피보나치 수열 합 
 
 - hard
-  - KMP
-  - Edmond-Karp
+  - KMP O
+  - Edmond-Karp 
   - SCC
   - 2-SAT
   - 선분 교차 알고리즘
