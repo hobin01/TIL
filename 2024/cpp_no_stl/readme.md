@@ -32,7 +32,9 @@ algorithm
 
 - hard
   - KMP O
-  - Edmond-Karp 
+  - SPFA
+  - Edmonds-Karp 
+  - MCMF
   - SCC
   - 2-SAT
   - 선분 교차 알고리즘
