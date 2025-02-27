@@ -16,6 +16,10 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
+# kubectl 적용을 위한 환경 변수 설정 
+echo 'export KUBECONFIG=$HOME/.kube/config' >> $HOME/.bashrc
+source $HOME/.bashrc
+
 # flannel 네트워크 적용
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
@@ -24,9 +28,5 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documen
 sudo touch /vagrant/join_command.sh
 sudo kubeadm token create --ttl 0 --print-join-command > /vagrant/join_command.sh
 chmod +x /vagrant/join_command.sh
-
-# kubectl 적용을 위한 환경 변수 설정 
-echo 'export KUBECONFIG=/etc/kubernetes/admin.conf' >> ~/.bashrc
-source ~/.bashrc
 
 echo "===== Master 노드 설정 완료 ====="
