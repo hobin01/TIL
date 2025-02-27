@@ -25,4 +25,8 @@ sudo touch /vagrant/join_command.sh
 sudo kubeadm token create --ttl 0 --print-join-command > /vagrant/join_command.sh
 chmod +x /vagrant/join_command.sh
 
+# kubectl 적용을 위한 환경 변수 설정 
+echo 'export KUBECONFIG=/etc/kubernetes/admin.conf' >> ~/.bashrc
+source ~/.bashrc
+
 echo "===== Master 노드 설정 완료 ====="
