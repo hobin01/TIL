@@ -9,13 +9,19 @@ fi
 echo "===== Master 노드 설정 시작: $(hostname) ====="
 
 # Kubernetes master 초기화
-sudo kubeadm init --apiserver-advertise-address=192.168.1.10 --pod-network-cidr=10.0.0.0/16
+sudo kubeadm init --apiserver-advertise-address=192.168.1.10 --pod-network-cidr=10.244.0.0/16
 
-# calico 네트워크 적용
-# vm network와 충돌 방지를 위해 10.0.0.0/16으로 pod network 변경 
-curl -o /vagrant/calico.yaml https://docs.projectcalico.org/manifests/calico.yaml
-sed -i 's/192.168.0.0\/16/10.0.0.0\/16/g' /vagrant/calico.yaml
-kubectl apply --validate=false -f /vagrant/calico.yaml
+# kubectl 등 사용자 명령어를 위한 kubeconfig 설정
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# kubectl 적용을 위한 환경 변수 설정 
+echo 'export KUBECONFIG=$HOME/.kube/config' >> $HOME/.bashrc
+source $HOME/.bashrc
+
+# flannel 네트워크 적용
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
 # worker 노드를 위한 join 명령어 생성 및 공유 폴더에 저장
 # --ttl 0 : 기본 토큰 만료 24시간 대신 만료 없음으로 설정 
