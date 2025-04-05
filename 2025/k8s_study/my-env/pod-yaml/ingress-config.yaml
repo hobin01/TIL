@@ -1,0 +1,33 @@
+# ingress-config.yaml (수정된 버전)
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hname-svc-default
+                port:
+                  number: 80
+          - path: /ip
+            pathType: Prefix
+            backend:
+              service:
+                name: ip-svc
+                port:
+                  number: 80
+          - path: /your-directory
+            pathType: Prefix
+            backend:
+              service:
+                name: your-svc
+                port:
+                  number: 80
